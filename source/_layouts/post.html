@@ -1,0 +1,32 @@
+---
+layout: default
+single: true
+---
+
+<div>
+
+<article class="hentry" role="article">
+  {% include article.html %}
+  <footer>
+    <p class="meta">
+      {% if page.next.url %}
+        <a class="basic-alignment right" href="{{page.next.url}}" title="Next Post: {{page.next.title}}">{{page.next.title}}  &laquo;</a>
+      {% endif %}
+      {% if page.previous.url %}
+        <a class="basic-alignment left" href="{{page.previous.url}}" title="Previous Post: {{page.previous.title}}">&raquo; {{page.previous.title}}</a>
+      {% endif %}
+    </p>
+  </footer>
+</article>
+
+</div>
+
+{% unless page.sidebar == false %}
+<aside class="sidebar">
+  {% if site.post_asides.size %}
+    {% include_array post_asides %}
+  {% else %}
+    {% include_array default_asides %}
+  {% endif %}
+</aside>
+{% endunless %}

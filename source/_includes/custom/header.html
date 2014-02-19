@@ -1,0 +1,19 @@
+<style>
+.pic {
+	float: left;
+}
+.hgroup {
+	float: right;
+}
+</style>
+
+<div class="pic">
+	<img class="position" alt="Mark Schipper" width="210px" height="280px" src="/images/mark.jpg" />
+</div>
+
+<hgroup class="hgroup">
+	<h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
+	{% if site.subtitle %}
+	<h2>{{ site.subtitle }}</h2>
+	{% endif %}
+</hgroup>
