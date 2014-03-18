@@ -1,0 +1,9 @@
+  {
+  "name": "",
+  "children": [
+    {"name": "Market Research", "size": 18},
+    {"name": "New Product Development", "size": 12},
+    {"name": "Life-Cycle Management", "size": 18},
+    {"name": "Marketing Communications", "size": 18}
+  ]
+}

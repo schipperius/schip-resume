@@ -1,6 +1,22 @@
-<nav class="navbar navbar-default" role="navigation">
+<style>
+  #nav.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:1;
+  }
+</style>
+
+<nav id="nav" class="navbar navbar-static navbar-default" role="navigation">
   <div class="container">
-    <div class="collapse navbar-collapse">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
       	<li><a href="{{ root_url }}/">Resume</a></li>
         <li><a href="{{ root_url }}/overview">Overview</a></li>
@@ -8,7 +24,16 @@
         <li><a href="{{ root_url }}/skills">Skills</a></li>
         <li><a href="{{ root_url }}/employment">Employment</a></li>
         <li><a href="{{ root_url }}/education">Education</a></li>
+        <li><a href="{{ root_url }}/recommendations">Recommendations</a></li>
       </ul>
     </div>
   </div>
 </nav>
+
+<script type="text/javascript">
+  $('#nav').affix({
+    offset: {
+      top: 316
+    }
+  });
+</script>

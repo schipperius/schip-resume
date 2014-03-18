@@ -1,0 +1,79 @@
+---
+layout: post
+title: Recommendations
+---
+
+<style>
+.cloud {
+  position: relative;
+}
+</style>
+
+<section>
+  <div class="cloud container"><center></center></div>
+</section>
+
+<section>
+	<blockquote>
+		<p>Mark combines visionary leadership with excellent operational management. He ensures that courses within certificate programs under his leadership provide current, practical, and relevant education to students.</p>
+		<p>He taps the instructors' strengths by allowing room for creativity while maintaining high quality of the courses taught.</p>
+		<p>He is definitely one of the best managers that I ever reported to as an instructor.</p>
+
+		<small class="pull-right"><a href="http://ca.linkedin.com/in/jolantawarpechowskagruca">Jolanta Warpechowska-Gruca</a>, Instructor. August 31, 2013.</small>
+	</blockquote>
+</section>
+
+<section>
+	<blockquote>
+		<p>Working with Mark was a pleasure as he exemplified what it meant to work in a truly collaborative nature.</p>
+		<p>He was very easy to work with and was open and receptive to all ideas that were presented and I believe that his collaborative spirit contributed to what will be a highly successful program.</p>
+
+		<small class="pull-right"><a href="http://ca.linkedin.com/in/wjdataguy">Chris Sorensen</a>, Instructor. July 19, 2013.</small>
+	</blockquote>
+</section>
+
+<section>
+	<blockquote>
+		<p>Mark an exceptional hands-on manager. He completely understands the issues his instructors face in the labs and relates to them at their level.</p>
+		<p>Mark allows his instructors the freedom to do what they do best: design and deliver a course to the best of their abilities and to the maximum benefit of the students.</p>
+		<p>Because of these reasons, and because of Mark's good nature, I look forward to working with him for many more years. </p>
+
+		<small class="pull-right"><a href="http://ca.linkedin.com/pub/joe-cygman/17/829/944">Joe Cygman</a>, Instructor. March 21, 2013.</small>
+	</blockquote>
+</section>
+
+<script type="text/javascript">
+  var fill = d3.scale.category20();
+
+  d3.layout.cloud().size([600, 300])
+  	.words([
+      "visionary", "leadership", "excellence", "open minded", "encouragement", "professional", "growth", "vision", "energy", "detailed", "thorough", "strength"]
+    .map(function(d) {
+      return {text: d, size: 10 + Math.random() * 90};
+    }))
+    .padding(5)
+    .rotate(function() { return ~~(Math.random() * 2) * 90; })
+    .font("Impact")
+    .fontSize(function(d) { return d.size; })
+    .on("end", draw)
+    .start();
+
+  function draw(words) {
+    d3.select(".cloud").append("svg")
+        .attr("width", 600)
+        .attr("height", 300)
+      .append("g")
+        .attr("transform", "translate(150,150)")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size + "px"; })
+        .style("font-family", "Impact")
+        .style("fill", function(d, i) { return fill(i); })
+        .attr("text-anchor", "middle")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+  }
+</script>

@@ -10,7 +10,7 @@
   <meta name="author" content="Integrate Design Studio">
 
   
-  <meta name="description" content="I’m a seasoned, forward-thinking product manager with a proven track record of success at building education programs that are trending, student- &hellip;">
+  <meta name="description" content="I’m a seasoned, forward-thinking product manager with a proven track record of building and maintaining training and development programs that are &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -24,13 +24,13 @@
 	
 /favicon.ico" rel="icon">
 
-
-  <link href="/public/stylesheets/styles.css" rel="stylesheet" type="text/css" />
-
-
   <link href="
 	
-/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+/stylesheets/bootstrap.v3.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  <!-- <link href="
+	
+/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css"> -->
 
   <link href="/atom.xml" rel="alternate" title="Mark Schipper" type="application/atom+xml">
 
@@ -51,6 +51,11 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -63,41 +68,83 @@
 	
 /javascripts/d3.v3/d3.v3.min.js"></script>
 
+<script src="
+	
+/javascripts/d3.v3/d3.layout.cloud.js"></script>
+
+<script src="
+	
+/javascripts/d3.v3/d3.tree.js"></script>
   
 
 
 </head>
 
 
-<body   >
+<body
 
-  <header role="banner"><style>
-.pic {
-	float: left;
-}
-.hgroup {
-	float: right;
-}
-</style>
 
-<div class="pic">
-	<img class="position" alt="Mark Schipper" width="210px" height="280px" src="/images/mark.jpg" />
-</div>
 
-<hgroup class="hgroup">
-	<h1><a href="
+
+
+
+
+	data-spy="scroll" data-target="#navbar"
+
+>
+
+  <header role="banner">
+  	</br>
+<div class="container banner">
+	<div class="row">
+	  <div class="col-md-3 pic">
+	  	<img class="thumbnail img-rounded img-responsive" alt="Mark Schipper" width="210px" height="280px" src="/images/mark.jpg" />
+	  </div>
+	  <div class="col-md-6 hgroup">
+	  	<hgroup>
+				<h1><a href="
 	
 /">Mark Schipper</a></h1>
-	
-	<h2>Infographic Resume</h2>
-	
-</hgroup>
+				
+				<h2>Infographic Resume</h2>
+				
+			</hgroup>
+			</br>
+			<div>
+				<a href="http://ca.linkedin.com/in/schipperius" target="_blank">
+        	<img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x33.png" width="160" height="33" border="0" alt="View Mark Schipper's profile on LinkedIn">
+    		</a>
+    	</div>
+	  </div>
+	  <div id="chart">
+	  </div>
+		<button class="regenerate pull-right">Regenerate</button>
+	</div>
+</div>
 
-</header>
 
-  <nav role="navigation"><nav class="navbar navbar-default" role="navigation">
+  </header>
+
+  <nav role="navigation">
+  	<style>
+  #nav.affix {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index:1;
+  }
+</style>
+
+<nav id="nav" class="navbar navbar-static navbar-default" role="navigation">
   <div class="container">
-    <div class="collapse navbar-collapse">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
       	<li><a href="
 	
@@ -117,16 +164,28 @@
         <li><a href="
 	
 /education">Education</a></li>
+        <li><a href="
+	
+/recommendations">Recommendations</a></li>
       </ul>
     </div>
   </div>
 </nav>
 
-</nav>
+<script type="text/javascript">
+  $('#nav').affix({
+    offset: {
+      top: 316
+    }
+  });
+</script>
 
-  <div id="main">
+
+  </nav>
+
+  <div class="container" id="main">
     <div id="content">
-      <div class="blog-index">
+      <div class="blog-index col-md-8">
   
   
   
@@ -134,32 +193,41 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="
+      <h2 class="entry-title"><a href="
 	
-/overview/">Overview</a></h1>
+/overview">Overview</a></h2>
     
   </header>
 
 
 
   <div class="entry-content"><section>
-	<blockquote><p>I’m a seasoned, forward-thinking product manager with a proven track record of success at building education programs that are trending, student-focused and profitable.</p></blockquote>
+	<blockquote><p>I’m a seasoned, forward-thinking product manager with a proven track record of building and maintaining training and development programs that are relevant, student-focused and financially viable.</p></blockquote>
 
-  <div class="venn container"></div>
+  <div class="container">
+    <svg class="venn" width="450" height="400"
+      viewBox="0 0 450 400" preserveAspectRatio="xMidYMid">
+    </svg>
+  </div>
 
-  <blockquote><p>I work across multiple disciplines with heightened curiosity and enthusiasm to envision on a strategic level, execute on the tactical level and conduct activities that drive business results.</p></blockquote>
+  <blockquote><p>I move across multiple disciplines with enthusiasm and curiosity, and with pragmatic agility I envision on a strategic level, execute on the tactical level and initiate business activities that drive results.</p></blockquote>
 
   <blockquote><p>I’m analytical, intuitive and tech savvy, a generalizing specialist with a strong grasp on business, marketing, technology and education.</p></blockquote>
 
-	<div class="tshaped container"></div>
+	<div class="container">
+    <svg class="tshaped" width="550" height="600"
+      viewBox="0 0 550 550" preserveAspectRatio="xMidYMid">
+    </svg>
+  </div>
 </section>
 
+<!-- JavaScripts -->
 <script type="text/javascript">
 // Set dimensions of svg canvas
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
     padding = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 300 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    width = 450 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 // Add svg canvas
 var svg = d3.select(".venn").append("svg:svg")
@@ -168,13 +236,22 @@ var svg = d3.select(".venn").append("svg:svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+// Add svg responsiveness
+var aspect = 450 / 400,
+    chart = $(".venn");
+$(window).on("resize", function() {
+    var targetWidth = chart.parent().width();
+    chart.attr("width", targetWidth);
+    chart.attr("height", targetWidth / aspect);
+});
+
 // Draw first circle
   svg.append("svg:circle")
-    .attr("cx", 80)
-    .attr("cy", 80)
-    .attr("r", 80)
+    .attr("cx", 120)
+    .attr("cy", 120)
+    .attr("r", 120)
     .style("fill", "brown")
-    .style("fill-opacity", ".3");
+    .style("fill-opacity", ".5");
 
 // Add text to circle
   var text = svg.append("svg:text")
@@ -184,7 +261,7 @@ var svg = d3.select(".venn").append("svg:svg")
     .attr("text-anchor", "middle")
     .attr({"xlink:href": "#business", })
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("Strategy");
 
   var text = svg.append("svg:text")
@@ -194,15 +271,15 @@ var svg = d3.select(".venn").append("svg:svg")
     .attr("text-anchor", "middle")
     .attr({"xlink:href": "#business", })
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("and Tactics");
 
+// Draw second circle
   svg.append("svg:circle")
-    .attr("cx", 190)
-    .attr("cy", 80)
-    .attr("r", 80)
+    .attr("cx", 300)
+    .attr("cy", 120)
+    .attr("r", 120)
     .style("fill", "steelblue")
-    .style("text", "steelblue")
     .style("fill-opacity", ".5");
 
   var text = svg.append("svg:text")
@@ -211,7 +288,7 @@ var svg = d3.select(".venn").append("svg:svg")
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("Product");
   var text = svg.append("svg:text")
     .attr("x", 210)
@@ -219,47 +296,61 @@ var svg = d3.select(".venn").append("svg:svg")
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("Development");
 
+// Draw third circle
   svg.append("svg:circle")
-    .attr("cx", 130)
-    .attr("cy", 180)
-    .attr("r", 80)
+    .attr("cx", 200)
+    .attr("cy", 260)
+    .attr("r", 120)
     .style("fill", "green")
-    .style("fill-opacity", ".4");
+    .style("fill-opacity", ".5");
 
   var text = svg.append("svg:text")
-    .attr("x", 130)
+    .attr("x", 135)
     .attr("y", 170)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("Product");
   var text = svg.append("svg:text")
-    .attr("x", 130)
+    .attr("x", 135)
     .attr("y", 185)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("Marketing");
-
 </script>
 
 <script type="text/javascript">
+// Set dimensions of svg canvas
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    padding = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 500 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
-  var width = 500,
-      height = 90;
+// Add svg canvas
+var svg = d3.select(".tshaped").append("svg:svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", width)
-    .attr("height", height);
+// Add responsive design to SVG elements
+var aspect = 500 / 600,
+    chart = $(".tshaped");
+$(window).on("resize", function() {
+    var targetWidth = chart.parent().width();
+    chart.attr("width", targetWidth);
+    chart.attr("height", targetWidth / aspect);
+});
 
+// Draw first rectangle with hyperlink
   svg.append("svg:a")
-    .attr("xlink:href", "/#knowledge")
+    .attr("xlink:href", "/#business")
     .append("svg:rect")
       .attr("x", 0)
       .attr("y", 0)
@@ -267,244 +358,232 @@ var svg = d3.select(".venn").append("svg:svg")
       .attr("width", 120)
       .attr("rx", 15)
       .attr("ry", 15)
-      .style("fill", "steelblue")
-      .style("fill-opacity", ".5");
+      .style("fill", "steelblue");
 
-   svg.append("svg:text")
-      .attr("x", 60)
-      .attr("y", 35)
-      .attr("dy", "1em")
-      .attr("text-anchor", "middle")
-      .style("font", "16px Helvetica Neue")
-      .style("fill", "white")
-      .text("Business");
+// Add text to rectangle
+  var text = svg.append("svg:text")
+    .attr("x", 60)
+    .attr("y", 35)
+    .attr("dy", "1em")
+    .attr("text-anchor", "middle")
+    .style("font", "14px Helvetica Neue")
+    .style("fill", "white")
+    .text("Business");
 
-
-
-    svg.append("svg:rect")
+// Draw second rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#marketing")
+    .append("svg:rect")
     .attr("x", 120)
     .attr("y", 0)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 180)
-    .attr("y", 35)
+    .attr("y", 35
+      )
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Marketing");
 
-
-    svg.append("svg:rect")
+// Draw third rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#technology")
+    .append("svg:rect")
     .attr("x", 240)
     .attr("y", 0)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 300)
     .attr("y", 35)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Technology");
 
-    svg.append("svg:rect")
+// Draw forth rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#education")
+    .append("svg:rect")
     .attr("x", 360)
     .attr("y", 0)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 420)
     .attr("y", 35)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Education");
+</script>
 
+<script type="text/javascript">
+// Draw first rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#communication")
+    .append("svg:rect")
+      .attr("x", 180)
+      .attr("y", 90)
+      .attr("height", 90)
+      .attr("width", 120)
+      .attr("rx", 15)
+      .attr("ry", 15)
+      .style("fill", "steelblue");
 
-//////
-
-  var w = 500,
-      h = 90;
-
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-
-  svg.append("svg:rect")
-    .attr("x", 180)
-    .attr("y", 0)
-    .attr("height", 90)
-    .attr("width", 120)
-    .attr("rx", 15)
-    .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
-
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 35)
+    .attr("y", 125)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Communication");
 
-
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-
-  svg.append("svg:rect")
+// Draw second rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#information")
+    .append("svg:rect")
     .attr("x", 180)
-    .attr("y", 0)
+    .attr("y", 180)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 30)
+    .attr("y", 205)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Information");
 
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 45)
+    .attr("y", 220)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Management");
 
-
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-
-  svg.append("svg:rect")
+// Draw third rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#organization")
+    .append("svg:rect")
     .attr("x", 180)
-    .attr("y", 0)
+    .attr("y", 270)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 30)
+    .attr("y", 295)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Organization");
 
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 45)
+    .attr("y", 310)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Management");
 
-
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-
-  svg.append("svg:rect")
+// Draw forth rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#planning")
+    .append("svg:rect")
     .attr("x", 180)
-    .attr("y", 0)
+    .attr("y", 360)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
+
+// Add text to rectangle
+  var text = svg.append("svg:text")
+    .attr("x", 240)
+    .attr("y", 390)
+    .attr("dy", "1em")
+    .attr("text-anchor", "middle")
+    .style("font", "14px Helvetica Neue")
+    .style("fill", "white")
+    .text("Planning and");
 
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 30)
+    .attr("y", 405)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
-    .text("Design and");
+    .text("Design");
 
-  var text = svg.append("svg:text")
-    .attr("x", 240)
-    .attr("y", 45)
-    .attr("dy", "1em")
-    .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
-    .style("fill", "white")
-    .text("Planning");
-
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-
-  svg.append("svg:rect")
+// Draw fifth rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#research")
+    .append("svg:rect")
     .attr("x", 180)
-    .attr("y", 0)
+    .attr("y", 450)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 30)
+    .attr("y", 475)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Research and");
 
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 45)
+    .attr("y", 485)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Investigation");
-
-  var bbox = text.node().getBBox();
 
 </script>
 </div>
@@ -519,320 +598,925 @@ var svg = d3.select(".venn").append("svg:svg")
       
   <header>
     
-      <h1 class="entry-title"><a href="
+      <h2 class="entry-title"><a href="
 	
-/knowledge/">Knowledge Stack</a></h1>
+/knowledge">Knowledge</a></h2>
     
   </header>
 
 
 
   <div class="entry-content"><style>
-/* Begin Bar Charts */
-.value {
-  fill: white;
-  }
+text {
+  font: 10px sans-serif;
+}
+
+rect.background {
+  fill: #F8F8F8;
+}
+
 .axis {
   shape-rendering: crispEdges;
-  font: 10px sans-serif;
-  }
-.axis text {
-  font: 10px sans-serif;
-  }
-.axis path {
-  stroke: none;
-  display: none;
-  }
-.x.axis line {
-  stroke: #fff;
-  stroke-opacity: .8;
-  }
-.y.axis path {
-  stroke: black;
-  }
+}
+
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
-  }
-.bar {
-  fill: steelblue;
-  }
-.bar:hover {
-  fill: brown;
-  }
-/*  End Bar Charts */
+}
 </style>
 
 <section>
-	<h2>Business Strategy and Tactics</h2>
+  <blockquote><p>&ldquo;The suppression of uncomfortable ideas may be common in religion and politics, but it is not the path to knowledge; it has no place in the endeavor of science.&rdquo;
+  <small class="pull-right">Cosmos: A Personal Voyage, Episode 4 &#8220;Heavan and Hell&#8221;. Carl Sagan, 1980.</small></p></blockquote>
+</section>
+</br>
+<section>
+	<h3 id="business">Business Strategy and Tactics</h3>
 	<div class="knowl_bus"></div>
 
-	<h2>Product Marketing and Development</h2>
+	<h3 id="marketing">Product Development and Marketing</h3>
 	<div class="knowl_mar"></div>
 
-	<h2>Website Design and Development</h2>
+	<h3 id="technology">Website Architecture</h3>
 	<div class="knowl_tech"></div>
 
-	<h2>Learning and Development</h2>
+	<h3 id="education">Learning and Development</h3>
 	<div class="knowl_learn"></div>
 </section>
 
 <!-- Begin Business Strategy and Tactics Stack Bar Chart-->
-<script type="text/javascript">
+<script>
 (function() {
-
-var margin = {top: 20, right: 20, bottom: 40, left: 20},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 100, bottom: 10, left: 200},
+    width = 700 - margin.left - margin.right,
+    height = 180 - margin.top - margin.bottom;
 
 var x = d3.scale.linear()
-    .range([0, width])
+    .range([0, width]);
 
-var y = d3.scale.ordinal()
-    .rangeRoundBands([0, height], .1);
+var barHeight = 20;
+
+var color = d3.scale.ordinal()
+    .range(["steelblue"]);
+
+var duration = 750,
+    delay = 25;
+
+var partition = d3.layout.partition()
+    .value(function(d) { return d.size; });
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("top");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-
-var bar1 = d3.select(".knowl_bus").append("svg")
+var svg = d3.select(".knowl_bus").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data/knowl_bus.tsv", type, function(error, data) {
-  x.domain([0, d3.max(data, function(d) { return d.frequency; })]);
-  y.domain(data.map(function(d) { return d.letter; }));
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", up);
 
-  bar1.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+svg.append("g")
+    .attr("class", "x axis");
 
-  bar1.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end");
+svg.append("g")
+    .attr("class", "y axis")
+  .append("line")
+    .attr("y1", "100%");
 
-  bar1.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("y", function(d) { return y(d.letter); })
-      .attr("height", y.rangeBand())
-      .attr("x", function(d) { return x(d.frequency); })
-      .attr("width", function(d) { return width - x(d.frequency); });
-
+d3.json("data/knowl_bus.json", function(error, root) {
+  partition.nodes(root);
+  x.domain([0, root.value]).nice();
+  down(root, 0);
 });
 
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
+function down(d, i) {
+  if (!d.children || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Entering nodes immediately obscure the clicked-on bar, so hide it.
+  exit.selectAll("rect").filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Enter the new bars for the clicked-on data.
+  // Per above, entering bars are immediately visible.
+  var enter = bar(d)
+      .attr("transform", stack(i))
+      .style("opacity", 1);
+
+  // Have the text fade-in, even though the bars are visible.
+  // Color the bars as parents; they will fade to children if appropriate.
+  enter.select("text").style("fill-opacity", 1e-6);
+  enter.select("rect").style("fill", color(true));
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to their new position.
+  var enterTransition = enter.transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; });
+
+  // Transition entering text.
+  enterTransition.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", function(d) { return color(!!d.children); });
+
+  // Transition exiting bars to fade out.
+  var exitTransition = exit.transition()
+      .duration(duration)
+      .style("opacity", 1e-6)
+      .remove();
+
+  // Transition exiting bars to the new x-scale.
+  exitTransition.selectAll("rect")
+      .attr("width", function(d) { return x(d.value); });
+
+  // Rebind the current node to the background.
+  svg.select(".background")
+      .datum(d)
+    .transition()
+      .duration(end);
+
+  d.index = i;
 }
 
+function up(d) {
+  if (!d.parent || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Enter the new bars for the clicked-on data's parent.
+  var enter = bar(d.parent)
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; })
+      .style("opacity", 1e-6);
+
+  // Color the bars as appropriate.
+  // Exiting nodes will obscure the parent bar, so hide it.
+  enter.select("rect")
+      .style("fill", function(d) { return color(!!d.children); })
+    .filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to fade in over the full duration.
+  var enterTransition = enter.transition()
+      .duration(end)
+      .style("opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  // When the entering parent rect is done, make it visible!
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
+
+  // Transition exiting bars to the parent's position.
+  var exitTransition = exit.selectAll("g").transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", stack(d.index));
+
+  // Transition exiting text to fade out.
+  exitTransition.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Transition exiting rects to the new scale and fade to parent color.
+  exitTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", color(true));
+
+  // Remove exiting nodes when the last child has finished transitioning.
+  exit.transition()
+      .duration(end)
+      .remove();
+
+  // Rebind the current parent to the background.
+  svg.select(".background")
+      .datum(d.parent)
+    .transition()
+      .duration(end);
+}
+
+// Creates a set of bars for the given data node, at the specified index.
+function bar(d) {
+  var bar = svg.insert("g", ".y.axis")
+      .attr("class", "enter")
+      .attr("transform", "translate(0,5)")
+    .selectAll("g")
+      .data(d.children)
+    .enter().append("g")
+      .style("cursor", function(d) { return !d.children ? null : "pointer"; })
+      .on("click", down);
+
+  bar.append("text")
+      .attr("x", -6)
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d.name; });
+
+  bar.append("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .attr("height", barHeight);
+
+  return bar;
+}
+
+// A stateful closure for stacking bars horizontally.
+function stack(i) {
+  var x0 = 0;
+  return function(d) {
+    var tx = "translate(" + x0 + "," + barHeight * i * 1.2 + ")";
+    x0 += x(d.value);
+    return tx;
+  };
+}
 })();
 </script>
 
-
-
-
-
+<!-- Begin Product Development and Marketing Stack Bar Chart-->
 <script>
 (function() {
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 100, bottom: 10, left: 200},
+    width = 700 - margin.left - margin.right,
+    height = 130 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+var x = d3.scale.linear()
+    .range([0, width]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+var barHeight = 20;
+
+var color = d3.scale.ordinal()
+    .range(["steelblue"]);
+
+var duration = 750,
+    delay = 25;
+
+var partition = d3.layout.partition()
+    .value(function(d) { return d.size; });
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("top")
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
-
-var bar2 = d3.select(".knowl_mar").append("svg")
+var svg = d3.select(".knowl_mar").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data/knowl_mar.tsv", type, function(error, data) {
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", up);
 
-  bar2.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+svg.append("g")
+    .attr("class", "x axis");
 
-  bar2.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end");
+svg.append("g")
+    .attr("class", "y axis")
+  .append("line")
+    .attr("y1", "100%");
 
-  bar2.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); });
-
+d3.json("data/knowl_mar.json", function(error, root) {
+  partition.nodes(root);
+  x.domain([0, root.value]).nice();
+  down(root, 0);
 });
 
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
+function down(d, i) {
+  if (!d.children || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Entering nodes immediately obscure the clicked-on bar, so hide it.
+  exit.selectAll("rect").filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Enter the new bars for the clicked-on data.
+  // Per above, entering bars are immediately visible.
+  var enter = bar(d)
+      .attr("transform", stack(i))
+      .style("opacity", 1);
+
+  // Have the text fade-in, even though the bars are visible.
+  // Color the bars as parents; they will fade to children if appropriate.
+  enter.select("text").style("fill-opacity", 1e-6);
+  enter.select("rect").style("fill", color(true));
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to their new position.
+  var enterTransition = enter.transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; });
+
+  // Transition entering text.
+  enterTransition.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", function(d) { return color(!!d.children); });
+
+  // Transition exiting bars to fade out.
+  var exitTransition = exit.transition()
+      .duration(duration)
+      .style("opacity", 1e-6)
+      .remove();
+
+  // Transition exiting bars to the new x-scale.
+  exitTransition.selectAll("rect")
+      .attr("width", function(d) { return x(d.value); });
+
+  // Rebind the current node to the background.
+  svg.select(".background")
+      .datum(d)
+    .transition()
+      .duration(end);
+
+  d.index = i;
+}
+
+function up(d) {
+  if (!d.parent || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Enter the new bars for the clicked-on data's parent.
+  var enter = bar(d.parent)
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; })
+      .style("opacity", 1e-6);
+
+  // Color the bars as appropriate.
+  // Exiting nodes will obscure the parent bar, so hide it.
+  enter.select("rect")
+      .style("fill", function(d) { return color(!!d.children); })
+    .filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to fade in over the full duration.
+  var enterTransition = enter.transition()
+      .duration(end)
+      .style("opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  // When the entering parent rect is done, make it visible!
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
+
+  // Transition exiting bars to the parent's position.
+  var exitTransition = exit.selectAll("g").transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", stack(d.index));
+
+  // Transition exiting text to fade out.
+  exitTransition.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Transition exiting rects to the new scale and fade to parent color.
+  exitTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", color(true));
+
+  // Remove exiting nodes when the last child has finished transitioning.
+  exit.transition()
+      .duration(end)
+      .remove();
+
+  // Rebind the current parent to the background.
+  svg.select(".background")
+      .datum(d.parent)
+    .transition()
+      .duration(end);
+}
+
+// Creates a set of bars for the given data node, at the specified index.
+function bar(d) {
+  var bar = svg.insert("g", ".y.axis")
+      .attr("class", "enter")
+      .attr("transform", "translate(0,5)")
+    .selectAll("g")
+      .data(d.children)
+    .enter().append("g")
+      .style("cursor", function(d) { return !d.children ? null : "pointer"; })
+      .on("click", down);
+
+  bar.append("text")
+      .attr("x", -6)
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d.name; });
+
+  bar.append("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .attr("height", barHeight);
+
+  return bar;
+}
+
+// A stateful closure for stacking bars horizontally.
+function stack(i) {
+  var x0 = 0;
+  return function(d) {
+    var tx = "translate(" + x0 + "," + barHeight * i * 1.2 + ")";
+    x0 += x(d.value);
+    return tx;
+  };
 }
 })();
 </script>
 
+<!-- Begin Website Architecture Stack Bar Chart-->
 <script>
 (function() {
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 100, bottom: 10, left: 200},
+    width = 700 - margin.left - margin.right,
+    height = 175 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+var x = d3.scale.linear()
+    .range([0, width]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+var barHeight = 20;
+
+var color = d3.scale.ordinal()
+    .range(["steelblue"]);
+
+var duration = 750,
+    delay = 25;
+
+var partition = d3.layout.partition()
+    .value(function(d) { return d.size; });
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("top");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
-
-var bar3 = d3.select(".knowl_tech").append("svg")
+var svg = d3.select(".knowl_tech").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data/knowl_tech.tsv", type, function(error, data) {
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", up);
 
-  bar3.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+svg.append("g")
+    .attr("class", "x axis");
 
-  bar3.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end");
+svg.append("g")
+    .attr("class", "y axis")
+  .append("line")
+    .attr("y1", "100%");
 
-  bar3.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); });
-
+d3.json("data/knowl_tech.json", function(error, root) {
+  partition.nodes(root);
+  x.domain([0, root.value]).nice();
+  down(root, 0);
 });
 
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
+function down(d, i) {
+  if (!d.children || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Entering nodes immediately obscure the clicked-on bar, so hide it.
+  exit.selectAll("rect").filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Enter the new bars for the clicked-on data.
+  // Per above, entering bars are immediately visible.
+  var enter = bar(d)
+      .attr("transform", stack(i))
+      .style("opacity", 1);
+
+  // Have the text fade-in, even though the bars are visible.
+  // Color the bars as parents; they will fade to children if appropriate.
+  enter.select("text").style("fill-opacity", 1e-6);
+  enter.select("rect").style("fill", color(true));
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to their new position.
+  var enterTransition = enter.transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; });
+
+  // Transition entering text.
+  enterTransition.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", function(d) { return color(!!d.children); });
+
+  // Transition exiting bars to fade out.
+  var exitTransition = exit.transition()
+      .duration(duration)
+      .style("opacity", 1e-6)
+      .remove();
+
+  // Transition exiting bars to the new x-scale.
+  exitTransition.selectAll("rect")
+      .attr("width", function(d) { return x(d.value); });
+
+  // Rebind the current node to the background.
+  svg.select(".background")
+      .datum(d)
+    .transition()
+      .duration(end);
+
+  d.index = i;
+}
+
+function up(d) {
+  if (!d.parent || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Enter the new bars for the clicked-on data's parent.
+  var enter = bar(d.parent)
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; })
+      .style("opacity", 1e-6);
+
+  // Color the bars as appropriate.
+  // Exiting nodes will obscure the parent bar, so hide it.
+  enter.select("rect")
+      .style("fill", function(d) { return color(!!d.children); })
+    .filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to fade in over the full duration.
+  var enterTransition = enter.transition()
+      .duration(end)
+      .style("opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  // When the entering parent rect is done, make it visible!
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
+
+  // Transition exiting bars to the parent's position.
+  var exitTransition = exit.selectAll("g").transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", stack(d.index));
+
+  // Transition exiting text to fade out.
+  exitTransition.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Transition exiting rects to the new scale and fade to parent color.
+  exitTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", color(true));
+
+  // Remove exiting nodes when the last child has finished transitioning.
+  exit.transition()
+      .duration(end)
+      .remove();
+
+  // Rebind the current parent to the background.
+  svg.select(".background")
+      .datum(d.parent)
+    .transition()
+      .duration(end);
+}
+
+// Creates a set of bars for the given data node, at the specified index.
+function bar(d) {
+  var bar = svg.insert("g", ".y.axis")
+      .attr("class", "enter")
+      .attr("transform", "translate(0,5)")
+    .selectAll("g")
+      .data(d.children)
+    .enter().append("g")
+      .style("cursor", function(d) { return !d.children ? null : "pointer"; })
+      .on("click", down);
+
+  bar.append("text")
+      .attr("x", -6)
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d.name; });
+
+  bar.append("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .attr("height", barHeight);
+
+  return bar;
+}
+
+// A stateful closure for stacking bars horizontally.
+function stack(i) {
+  var x0 = 0;
+  return function(d) {
+    var tx = "translate(" + x0 + "," + barHeight * i * 1.2 + ")";
+    x0 += x(d.value);
+    return tx;
+  };
 }
 })();
 </script>
 
-
+<!-- Begin Learning and Development Stack Bar Chart-->
 <script>
 (function() {
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 100, bottom: 10, left: 200},
+    width = 700 - margin.left - margin.right,
+    height = 180 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+var x = d3.scale.linear()
+    .range([0, width]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+var barHeight = 20;
+
+var color = d3.scale.ordinal()
+    .range(["steelblue"]);
+
+var duration = 750,
+    delay = 25;
+
+var partition = d3.layout.partition()
+    .value(function(d) { return d.size; });
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("top");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
-
-var bar4 = d3.select(".knowl_learn").append("svg")
+var svg = d3.select(".knowl_learn").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data/knowl_learn.tsv", type, function(error, data) {
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", up);
 
-  bar4.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+svg.append("g")
+    .attr("class", "x axis");
 
-  bar4.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end");
+svg.append("g")
+    .attr("class", "y axis")
+  .append("line")
+    .attr("y1", "100%");
 
-  bar4.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); });
-
+d3.json("data/knowl_learn.json", function(error, root) {
+  partition.nodes(root);
+  x.domain([0, root.value]).nice();
+  down(root, 0);
 });
 
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
+function down(d, i) {
+  if (!d.children || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Entering nodes immediately obscure the clicked-on bar, so hide it.
+  exit.selectAll("rect").filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Enter the new bars for the clicked-on data.
+  // Per above, entering bars are immediately visible.
+  var enter = bar(d)
+      .attr("transform", stack(i))
+      .style("opacity", 1);
+
+  // Have the text fade-in, even though the bars are visible.
+  // Color the bars as parents; they will fade to children if appropriate.
+  enter.select("text").style("fill-opacity", 1e-6);
+  enter.select("rect").style("fill", color(true));
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to their new position.
+  var enterTransition = enter.transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; });
+
+  // Transition entering text.
+  enterTransition.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", function(d) { return color(!!d.children); });
+
+  // Transition exiting bars to fade out.
+  var exitTransition = exit.transition()
+      .duration(duration)
+      .style("opacity", 1e-6)
+      .remove();
+
+  // Transition exiting bars to the new x-scale.
+  exitTransition.selectAll("rect")
+      .attr("width", function(d) { return x(d.value); });
+
+  // Rebind the current node to the background.
+  svg.select(".background")
+      .datum(d)
+    .transition()
+      .duration(end);
+
+  d.index = i;
+}
+
+function up(d) {
+  if (!d.parent || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Enter the new bars for the clicked-on data's parent.
+  var enter = bar(d.parent)
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; })
+      .style("opacity", 1e-6);
+
+  // Color the bars as appropriate.
+  // Exiting nodes will obscure the parent bar, so hide it.
+  enter.select("rect")
+      .style("fill", function(d) { return color(!!d.children); })
+    .filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to fade in over the full duration.
+  var enterTransition = enter.transition()
+      .duration(end)
+      .style("opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  // When the entering parent rect is done, make it visible!
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
+
+  // Transition exiting bars to the parent's position.
+  var exitTransition = exit.selectAll("g").transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", stack(d.index));
+
+  // Transition exiting text to fade out.
+  exitTransition.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Transition exiting rects to the new scale and fade to parent color.
+  exitTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", color(true));
+
+  // Remove exiting nodes when the last child has finished transitioning.
+  exit.transition()
+      .duration(end)
+      .remove();
+
+  // Rebind the current parent to the background.
+  svg.select(".background")
+      .datum(d.parent)
+    .transition()
+      .duration(end);
+}
+
+// Creates a set of bars for the given data node, at the specified index.
+function bar(d) {
+  var bar = svg.insert("g", ".y.axis")
+      .attr("class", "enter")
+      .attr("transform", "translate(0,5)")
+    .selectAll("g")
+      .data(d.children)
+    .enter().append("g")
+      .style("cursor", function(d) { return !d.children ? null : "pointer"; })
+      .on("click", down);
+
+  bar.append("text")
+      .attr("x", -6)
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d.name; });
+
+  bar.append("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .attr("height", barHeight);
+
+  return bar;
+}
+
+// A stateful closure for stacking bars horizontally.
+function stack(i) {
+  var x0 = 0;
+  return function(d) {
+    var tx = "translate(" + x0 + "," + barHeight * i * 1.2 + ")";
+    x0 += x(d.value);
+    return tx;
+  };
 }
 })();
 </script>
@@ -848,22 +1532,277 @@ function type(d) {
       
   <header>
     
-      <h1 class="entry-title"><a href="
+      <h2 class="entry-title"><a href="
 	
-/skills/">Skills Stockpile</a></h1>
+/skills">Skills</a></h2>
     
   </header>
 
 
 
-  <div class="entry-content"></div>
+  <div class="entry-content"><style>
+	text {
+	  font-size: 14px;
+	  pointer-events: none;
+		}
+	text.parent {
+	  fill: #1f77b4;
+		}
+	circle {
+	  fill: #ccc;
+	  stroke: #999;
+	  pointer-events: all;
+		}
+	circle.parent {
+	  fill: #1f77b4;
+	  fill-opacity: .1;
+	  stroke: steelblue;
+		}
+	circle.parent:hover {
+	  stroke: #ff7f0e;
+	  stroke-width: 1px;
+		}
+	circle.child {
+	  pointer-events: none;
+		}
+</style>
+
+<section>
+
+	<h2 id="communication">Communication</h2>
+	 <div class="skills_ideas"></div>
+	<h2 id="information">Information Management</h2>
+  	<div class="skills_people"></div>
+	<h2 id="organization">Organization Management</h2>
+  	<div class="skills_things"></div>
+  <h2 id="planning">Planning and Design</h2>
+    <div class="skills_things"></div>
+  <h2 id="research">Research and Investigation</h2>
+    <div class="skills_things"></div>
+</section>
+
+
+<!-- d3.js add on bubble chart skills stack -->
+
+<script type="text/javascript">
+(function() {
+
+var w = 300,
+  h = 300,
+  r = 250,
+  x = d3.scale.linear().range([0, r]),
+  y = d3.scale.linear().range([0, r]),
+  node,
+  root;
+
+var pack = d3.layout.pack()
+    .size([r, r])
+    .value(function(d) { return d.size; })
+
+var bubble1 = d3.select(".skills_ideas").insert("svg:svg", "h2")
+    .attr("width", w)
+    .attr("height", h)
+  .append("svg:g")
+    .attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
+
+d3.json("data/skills_ideas.json", function(data) {
+  node = root = data;
+
+  var nodes = pack.nodes(root);
+
+  bubble1.selectAll("circle")
+      .data(nodes)
+    .enter().append("svg:circle")
+      .attr("class", function(d) { return d.children ? "parent" : "child"; })
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .attr("r", function(d) { return d.r; })
+      .on("click", function(d) { return zoom(node == d ? root : d); });
+
+  bubble1.selectAll("text")
+      .data(nodes)
+    .enter().append("svg:text")
+      .attr("class", function(d) { return d.children ? "parent" : "child"; })
+      .attr("x", function(d) { return d.x; })
+      .attr("y", function(d) { return d.y; })
+      .attr("dy", ".35em")
+      .attr("text-anchor", "middle")
+      .style("opacity", function(d) { return d.r > 20 ? 1 : 0; })
+      .text(function(d) { return d.name; });
+
+  d3.select(window).on("click", function() { zoom(root); });
+});
+
+function zoom(d, i) {
+  var k = r / d.r / 2;
+  x.domain([d.x - d.r, d.x + d.r]);
+  y.domain([d.y - d.r, d.y + d.r]);
+
+  var t = bubble1.transition()
+      .duration(d3.event.altKey ? 7500 : 750);
+
+  t.selectAll("circle")
+      .attr("cx", function(d) { return x(d.x); })
+      .attr("cy", function(d) { return y(d.y); })
+      .attr("r", function(d) { return k * d.r; });
+
+  t.selectAll("text")
+      .attr("x", function(d) { return x(d.x); })
+      .attr("y", function(d) { return y(d.y); })
+      .style("opacity", function(d) { return k * d.r > 20 ? 1 : 0; });
+
+  node = d;
+  d3.event.stopPropagation();
+}
+})();
+
+
+(function() {
+var w = 500,
+    h = 500,
+    r = 400,
+    x = d3.scale.linear().range([0, r]),
+    y = d3.scale.linear().range([0, r]),
+    node,
+    root;
+
+var pack = d3.layout.pack()
+    .size([r, r])
+    .value(function(d) { return d.size; })
+
+var bubble2 = d3.select(".skills_people").insert("svg:svg", "h2")
+    .attr("width", w)
+    .attr("height", h)
+  .append("svg:g")
+    .attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
+
+d3.json("data/skills_people.json", function(data) {
+  node = root = data;
+
+  var nodes = pack.nodes(root);
+
+  bubble2.selectAll("circle")
+      .data(nodes)
+    .enter().append("svg:circle")
+      .attr("class", function(d) { return d.children ? "parent" : "child"; })
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .attr("r", function(d) { return d.r; })
+      .on("click", function(d) { return zoom(node == d ? root : d); });
+
+  bubble2.selectAll("text")
+      .data(nodes)
+    .enter().append("svg:text")
+      .attr("class", function(d) { return d.children ? "parent" : "child"; })
+      .attr("x", function(d) { return d.x; })
+      .attr("y", function(d) { return d.y; })
+      .attr("dy", ".35em")
+      .attr("text-anchor", "middle")
+      .style("opacity", function(d) { return d.r > 20 ? 1 : 0; })
+      .text(function(d) { return d.name; });
+
+  d3.select(window).on("click", function() { zoom(root); });
+});
+
+function zoom(d, i) {
+  var k = r / d.r / 2;
+  x.domain([d.x - d.r, d.x + d.r]);
+  y.domain([d.y - d.r, d.y + d.r]);
+
+  var t = bubble2.transition()
+      .duration(d3.event.altKey ? 7500 : 750);
+
+  t.selectAll("circle")
+      .attr("cx", function(d) { return x(d.x); })
+      .attr("cy", function(d) { return y(d.y); })
+      .attr("r", function(d) { return k * d.r; });
+
+  t.selectAll("text")
+      .attr("x", function(d) { return x(d.x); })
+      .attr("y", function(d) { return y(d.y); })
+      .style("opacity", function(d) { return k * d.r > 20 ? 1 : 0; });
+
+  node = d;
+  d3.event.stopPropagation();
+}
+})();
+
+
+(function() {
+var w = 500,
+    h = 500,
+    r = 400,
+    x = d3.scale.linear().range([0, r]),
+    y = d3.scale.linear().range([0, r]),
+    node,
+    root;
+
+var pack = d3.layout.pack()
+    .size([r, r])
+    .value(function(d) { return d.size; })
+
+var bubble3 = d3.select(".skills_things").insert("svg:svg", "h2")
+    .attr("width", w)
+    .attr("height", h)
+  .append("svg:g")
+    .attr("transform", "translate(" + (w - r) / 2 + "," + (h - r) / 2 + ")");
+
+d3.json("data/skills_things.json", function(data) {
+  node = root = data;
+
+  var nodes = pack.nodes(root);
+
+  bubble3.selectAll("circle")
+      .data(nodes)
+    .enter().append("svg:circle")
+      .attr("class", function(d) { return d.children ? "parent" : "child"; })
+      .attr("cx", function(d) { return d.x; })
+      .attr("cy", function(d) { return d.y; })
+      .attr("r", function(d) { return d.r; })
+      .on("click", function(d) { return zoom(node == d ? root : d); });
+
+  bubble3.selectAll("text")
+      .data(nodes)
+    .enter().append("svg:text")
+      .attr("class", function(d) { return d.children ? "parent" : "child"; })
+      .attr("x", function(d) { return d.x; })
+      .attr("y", function(d) { return d.y; })
+      .attr("dy", ".35em")
+      .attr("text-anchor", "middle")
+      .style("opacity", function(d) { return d.r > 20 ? 1 : 0; })
+      .text(function(d) { return d.name; });
+
+  d3.select(window).on("click", function() { zoom(root); });
+});
+
+function zoom(d, i) {
+  var k = r / d.r / 2;
+  x.domain([d.x - d.r, d.x + d.r]);
+  y.domain([d.y - d.r, d.y + d.r]);
+
+  var t = bubble3.transition()
+      .duration(d3.event.altKey ? 7500 : 750);
+
+  t.selectAll("circle")
+      .attr("cx", function(d) { return x(d.x); })
+      .attr("cy", function(d) { return y(d.y); })
+      .attr("r", function(d) { return k * d.r; });
+
+  t.selectAll("text")
+      .attr("x", function(d) { return x(d.x); })
+      .attr("y", function(d) { return y(d.y); })
+      .style("opacity", function(d) { return k * d.r > 20 ? 1 : 0; });
+
+  node = d;
+  d3.event.stopPropagation();
+}
+})();
+</script>
+
+<!-- End Skills Stack -->
+
+</div>
   
-  
-    <footer>
-      <a rel="full-article" href="
-	
-/skills/">Read on &rarr;</a>
-    </footer>
   
 
 
@@ -874,15 +1813,67 @@ function type(d) {
       
   <header>
     
-      <h1 class="entry-title"><a href="
+      <h2 class="entry-title"><a href="
 	
-/employment/">Career Progression</a></h1>
+/employment">Employment</a></h2>
     
   </header>
 
 
 
-  <div class="entry-content"><div id="swim"></div>
+  <div class="entry-content"><section>
+	<blockquote><p>&ldquo;Where your talents and the needs of the world meet; therein lies your vocation.&rdquo;
+  	<small class="pull-right">Aristotle</small></p>
+  </blockquote>
+</section>
+
+<section>
+	<h3>Program Director (2006 - Present)</h3>
+	<h4>University of Calgary Continuing Education</h4>
+	<p><small>The University of Calgary has one of Canada&#8217;s largest and most successful continuing education departments. As Program Director, I oversee all aspects of the IT Programs of Study and with a focus on the financial and academic outcomes, I have built a financially viable unit consisting of a strong instructional team and cross-functional support staff, that create and deliver superior student experiences, providing long-term value for adult learners and the university community.</small></p>
+
+	<h4>Key Accomplishments</h4>
+
+	<h5>&#9658; New Product Development: Opens markets and achieves growth</h5>
+
+	<p>Deployed two diploma programs generating $260k net revenue in first six months.</p>
+
+	<p>Led a project team to design and develop a ‘Certificate in Business Intelligence’ and a ‘Certificate for Emerging Data Analysts’, the first such programs in Western Canada.</p>
+
+	<p>New course in business intelligence generates $25K, highest grossing course ever.</p>
+
+	<h5>&#9658; Product Life-Cycle Management: Maintains and grows existing portfolio</h5>
+
+	<p>Redesigned programs in Office Applications, Digital Media Design, and Web Design,  increasing gross revenue three-fold in just five years.</p>
+
+	<p>Program redesign ensures program content is trending, relevant and in demand.</p>
+
+	<h5>&#9658; Business Process Innovation: Increases net revenue twelvefold</h5>
+
+	<p>Market research and analysis resulted in a 74% reduction in program offerings, significantly improving financial health of entire product line.</p>
+
+	<p>Incremental and iterative improvement to business processes significantly reduces operational expense.</p>
+
+	<p>Reengineered additional business processes within the unit, resulting in substantial gains in efficiency thus allowing natural staff attrition to reduce team size by more than 50%.</p>
+
+	<h5>&#9658; Change Management Initiative: Propels team from reactivity to proactivity</h5>
+
+	<p>Initiated and cultivated a process whereby team members began working collaboratively and transparently, building a community of trust and respect.</p>
+
+	<h5>&#9658; Catalyst Driving Technological Change: Improves end user experience</h5>
+
+	<p>First instructional lab on campus to:
+	use virtualization software for course delivery
+	deliver programs of study simultaneously in class and online
+	use cloud platform technologies to seamlessly deliver technology to customers</p>
+
+	<h5>&#9658; New Business Intelligence Program: Enhances business decision-making</h5>
+
+	<p>Initiated the first business intelligence program for Continuing Education responsible for the front-end business user reports and data analysis.</p>
+
+</section>
+
+<div id="swim"></div>
 
 <script type="text/javascript">
 
@@ -1186,21 +2177,43 @@ function getPaths(items) {
       
   <header>
     
-      <h1 class="entry-title"><a href="
+      <h2 class="entry-title"><a href="
 	
-/education/">Learning Paths</a></h1>
+/education">Education</a></h2>
     
   </header>
 
 
 
-  <div class="entry-content"><div id="flare"></div>
+  <div class="entry-content"><style>
+	.node {
+  cursor: pointer;
+	}
+
+	.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+	}
+
+	.node text {
+  font: 14px sans-serif;
+	}
+
+	.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+	}
+</style>
+
+<div class="flare"></div>
 
 <!-- d3.js Denogram Tree Layout for Education Section -->
 <script type="text/javascript">
-
+(function() {
 var margin = {top: 0, right: 120, bottom: 20, left: 120},
-    width = 500 - margin.right - margin.left,
+    width = 700 - margin.right - margin.left,
     height = 500 - margin.top - margin.bottom;
 
 var i = 0,
@@ -1213,7 +2226,7 @@ var tree = d3.layout.tree()
 var diagonal = d3.svg.diagonal()
     .projection(function(d) { return [d.y, d.x]; });
 
-var edu = d3.select("#flare").append("svg")
+var edu = d3.select(".flare").append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -1336,9 +2349,102 @@ function click(d) {
   }
   update(d);
 }
-
+})();
 </script>
-<!-- End Learning Paths -->
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h2 class="entry-title"><a href="
+	
+/recommendations">Recommendations</a></h2>
+    
+  </header>
+
+
+
+  <div class="entry-content"><style>
+.cloud {
+  position: relative;
+}
+</style>
+
+<section>
+  <div class="cloud container"><center></center></div>
+</section>
+
+<section>
+	<blockquote>
+		<p>Mark combines visionary leadership with excellent operational management. He ensures that courses within certificate programs under his leadership provide current, practical, and relevant education to students.</p>
+		<p>He taps the instructors&#8217; strengths by allowing room for creativity while maintaining high quality of the courses taught.</p>
+		<p>He is definitely one of the best managers that I ever reported to as an instructor.</p>
+
+		<small class="pull-right"><a href="http://ca.linkedin.com/in/jolantawarpechowskagruca">Jolanta Warpechowska-Gruca</a>, Instructor. August 31, 2013.</small>
+	</blockquote>
+</section>
+
+<section>
+	<blockquote>
+		<p>Working with Mark was a pleasure as he exemplified what it meant to work in a truly collaborative nature.</p>
+		<p>He was very easy to work with and was open and receptive to all ideas that were presented and I believe that his collaborative spirit contributed to what will be a highly successful program.</p>
+
+		<small class="pull-right"><a href="http://ca.linkedin.com/in/wjdataguy">Chris Sorensen</a>, Instructor. July 19, 2013.</small>
+	</blockquote>
+</section>
+
+<section>
+	<blockquote>
+		<p>Mark an exceptional hands-on manager. He completely understands the issues his instructors face in the labs and relates to them at their level.</p>
+		<p>Mark allows his instructors the freedom to do what they do best: design and deliver a course to the best of their abilities and to the maximum benefit of the students.</p>
+		<p>Because of these reasons, and because of Mark&#8217;s good nature, I look forward to working with him for many more years. </p>
+
+		<small class="pull-right"><a href="http://ca.linkedin.com/pub/joe-cygman/17/829/944">Joe Cygman</a>, Instructor. March 21, 2013.</small>
+	</blockquote>
+</section>
+
+<script type="text/javascript">
+  var fill = d3.scale.category20();
+
+  d3.layout.cloud().size([600, 300])
+  	.words([
+      "visionary", "leadership", "excellence", "open minded", "encouragement", "professional", "growth", "vision", "energy", "detailed", "thorough", "strength"]
+    .map(function(d) {
+      return {text: d, size: 10 + Math.random() * 90};
+    }))
+    .padding(5)
+    .rotate(function() { return ~~(Math.random() * 2) * 90; })
+    .font("Impact")
+    .fontSize(function(d) { return d.size; })
+    .on("end", draw)
+    .start();
+
+  function draw(words) {
+    d3.select(".cloud").append("svg")
+        .attr("width", 600)
+        .attr("height", 300)
+      .append("g")
+        .attr("transform", "translate(150,150)")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size + "px"; })
+        .style("font-family", "Impact")
+        .style("fill", function(d, i) { return fill(i); })
+        .attr("text-anchor", "middle")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+  }
+</script>
 </div>
   
   
@@ -1348,28 +2454,46 @@ function click(d) {
   
 </div>
 
-<aside class="sidebar">
+<aside class="sidebar col-md-4">
   
-    <section>
-  <h1>Infographic Resume</h1>
-  <ul id="recent_posts">
+    <style>
+  #side-nav.affix {
+    top: 70px;
+    width: 284px;
+  }
+</style>
+
+<nav id="side-nav" class="well affix">
+  <h3>Infographic Resume</h3>
+  <ul class="nav" id="recent_posts">
     <li><a href="
 	
 /overview">Overview</a></li>
     <li><a href="
 	
-/knowledge">Knowledge</a></li>
+/knowledge">Knowledge Stack</a></li>
     <li><a href="
 	
-/skills">Skills</a></li>
+/skills">Skills Stockpile</a></li>
     <li><a href="
 	
-/employment">Employment</a></li>
+/employment">Career Progression</a></li>
     <li><a href="
 	
-/education">Education</a></li>
+/education">Learning Paths</a></li>
+    <li><a href="
+	
+/recommendations">Favorable Mentions</a></li>
   </ul>
-</section>
+</nav>
+
+<script type="text/javascript">
+  $('#side-nav').affix({
+        offset: {
+          top: $('#side-nav').height()
+        }
+  });
+</script>
 
 
 
@@ -1380,24 +2504,35 @@ function click(d) {
     </div>
   </div>
 
-  <footer role="contentinfo"><footer role="contentinfo" class="navbar navbar-fixed-bottom">
-  <div class="navbar-inner">
-    <div class="container">
-      <ul class="nav pull-right">
-        <li><a href="
-	
-/">Colophon</a></li>
-        <li><a href="
+  <footer role="contentinfo">
+  	</br>
+</br>
+</br>
+</br>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div class="container">
+    <ul class="nav navbar-nav pull-right">
+      <li><a href="
 	
 /">Contact</a></li>
-        <li>Copyright &copy; 2014</li>
-      </ul>
-    </div>
+      <li><a href="
+	
+/">Colophon</a></li>
+      <li><a href="
+	
+/">Integrate Design Studio</a></li>
+      <li><a href="
+	
+/">&copy; 2014</a></li>
+    </ul>
   </div>
-</footer>
+</nav>
 
-</footer>
+
+  </footer>
+
   
+
 
 
 

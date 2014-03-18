@@ -1,10 +1,26 @@
-<section>
-  <h1>Infographic Resume</h1>
-  <ul id="recent_posts">
+<style>
+  #side-nav.affix {
+    top: 70px;
+    width: 284px;
+  }
+</style>
+
+<nav id="side-nav" class="well affix">
+  <h3>Infographic Resume</h3>
+  <ul class="nav" id="recent_posts">
     <li><a href="{{ root_url }}/overview">Overview</a></li>
-    <li><a href="{{ root_url }}/knowledge">Knowledge</a></li>
-    <li><a href="{{ root_url }}/skills">Skills</a></li>
-    <li><a href="{{ root_url }}/employment">Employment</a></li>
-    <li><a href="{{ root_url }}/education">Education</a></li>
+    <li><a href="{{ root_url }}/knowledge">Knowledge Stack</a></li>
+    <li><a href="{{ root_url }}/skills">Skills Stockpile</a></li>
+    <li><a href="{{ root_url }}/employment">Career Progression</a></li>
+    <li><a href="{{ root_url }}/education">Learning Paths</a></li>
+    <li><a href="{{ root_url }}/recommendations">Favorable Mentions</a></li>
   </ul>
-</section>
+</nav>
+
+<script type="text/javascript">
+  $('#side-nav').affix({
+        offset: {
+          top: $('#side-nav').height()
+        }
+  });
+</script>

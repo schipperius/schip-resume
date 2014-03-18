@@ -1,30 +1,35 @@
 ---
 layout: post
-title: "Overview"
-
-comments: true
-sharing: true
-footer: true
+title: Overview
 ---
 
 <section>
-	<blockquote><p>I’m a seasoned, forward-thinking product manager with a proven track record of success at building education programs that are trending, student-focused and profitable.</p></blockquote>
+	<blockquote><p>I’m a seasoned, forward-thinking product manager with a proven track record of building and maintaining training and development programs that are relevant, student-focused and financially viable.</p></blockquote>
 
-  <div class="venn container"></div>
+  <div class="container">
+    <svg class="venn" width="450" height="400"
+      viewBox="0 0 450 400" preserveAspectRatio="xMidYMid">
+    </svg>
+  </div>
 
-  <blockquote><p>I work across multiple disciplines with heightened curiosity and enthusiasm to envision on a strategic level, execute on the tactical level and conduct activities that drive business results.</p></blockquote>
+  <blockquote><p>I move across multiple disciplines with enthusiasm and curiosity, and with pragmatic agility I envision on a strategic level, execute on the tactical level and initiate business activities that drive results.</p></blockquote>
 
   <blockquote><p>I’m analytical, intuitive and tech savvy, a generalizing specialist with a strong grasp on business, marketing, technology and education.</p></blockquote>
 
-	<div class="tshaped container"></div>
+	<div class="container">
+    <svg class="tshaped" width="550" height="600"
+      viewBox="0 0 550 550" preserveAspectRatio="xMidYMid">
+    </svg>
+  </div>
 </section>
 
+<!-- JavaScripts -->
 <script type="text/javascript">
 // Set dimensions of svg canvas
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
     padding = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 300 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom;
+    width = 450 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
 // Add svg canvas
 var svg = d3.select(".venn").append("svg:svg")
@@ -33,13 +38,22 @@ var svg = d3.select(".venn").append("svg:svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+// Add svg responsiveness
+var aspect = 450 / 400,
+    chart = $(".venn");
+$(window).on("resize", function() {
+    var targetWidth = chart.parent().width();
+    chart.attr("width", targetWidth);
+    chart.attr("height", targetWidth / aspect);
+});
+
 // Draw first circle
   svg.append("svg:circle")
-    .attr("cx", 80)
-    .attr("cy", 80)
-    .attr("r", 80)
+    .attr("cx", 120)
+    .attr("cy", 120)
+    .attr("r", 120)
     .style("fill", "brown")
-    .style("fill-opacity", ".3");
+    .style("fill-opacity", ".5");
 
 // Add text to circle
   var text = svg.append("svg:text")
@@ -49,7 +63,7 @@ var svg = d3.select(".venn").append("svg:svg")
     .attr("text-anchor", "middle")
     .attr({"xlink:href": "#business", })
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("Strategy");
 
   var text = svg.append("svg:text")
@@ -59,15 +73,15 @@ var svg = d3.select(".venn").append("svg:svg")
     .attr("text-anchor", "middle")
     .attr({"xlink:href": "#business", })
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("and Tactics");
 
+// Draw second circle
   svg.append("svg:circle")
-    .attr("cx", 190)
-    .attr("cy", 80)
-    .attr("r", 80)
+    .attr("cx", 300)
+    .attr("cy", 120)
+    .attr("r", 120)
     .style("fill", "steelblue")
-    .style("text", "steelblue")
     .style("fill-opacity", ".5");
 
   var text = svg.append("svg:text")
@@ -76,7 +90,7 @@ var svg = d3.select(".venn").append("svg:svg")
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("Product");
   var text = svg.append("svg:text")
     .attr("x", 210)
@@ -84,47 +98,61 @@ var svg = d3.select(".venn").append("svg:svg")
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("Development");
 
+// Draw third circle
   svg.append("svg:circle")
-    .attr("cx", 130)
-    .attr("cy", 180)
-    .attr("r", 80)
+    .attr("cx", 200)
+    .attr("cy", 260)
+    .attr("r", 120)
     .style("fill", "green")
-    .style("fill-opacity", ".4");
+    .style("fill-opacity", ".5");
 
   var text = svg.append("svg:text")
-    .attr("x", 130)
+    .attr("x", 135)
     .attr("y", 170)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("Product");
   var text = svg.append("svg:text")
-    .attr("x", 130)
+    .attr("x", 135)
     .attr("y", 185)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
     .style("font", "16px Helvetica Neue")
-    .style("fill", "Grey")
+    .style("fill", "White")
     .text("Marketing");
-
 </script>
 
 <script type="text/javascript">
+// Set dimensions of svg canvas
+var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    padding = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 500 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
 
-  var width = 500,
-      height = 90;
+// Add svg canvas
+var svg = d3.select(".tshaped").append("svg:svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", width)
-    .attr("height", height);
+// Add responsive design to SVG elements
+var aspect = 500 / 600,
+    chart = $(".tshaped");
+$(window).on("resize", function() {
+    var targetWidth = chart.parent().width();
+    chart.attr("width", targetWidth);
+    chart.attr("height", targetWidth / aspect);
+});
 
+// Draw first rectangle with hyperlink
   svg.append("svg:a")
-    .attr("xlink:href", "/#knowledge")
+    .attr("xlink:href", "/#business")
     .append("svg:rect")
       .attr("x", 0)
       .attr("y", 0)
@@ -132,243 +160,231 @@ var svg = d3.select(".venn").append("svg:svg")
       .attr("width", 120)
       .attr("rx", 15)
       .attr("ry", 15)
-      .style("fill", "steelblue")
-      .style("fill-opacity", ".5");
+      .style("fill", "steelblue");
 
-   svg.append("svg:text")
-      .attr("x", 60)
-      .attr("y", 35)
-      .attr("dy", "1em")
-      .attr("text-anchor", "middle")
-      .style("font", "16px Helvetica Neue")
-      .style("fill", "white")
-      .text("Business");
+// Add text to rectangle
+  var text = svg.append("svg:text")
+    .attr("x", 60)
+    .attr("y", 35)
+    .attr("dy", "1em")
+    .attr("text-anchor", "middle")
+    .style("font", "14px Helvetica Neue")
+    .style("fill", "white")
+    .text("Business");
 
-
-
-    svg.append("svg:rect")
+// Draw second rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#marketing")
+    .append("svg:rect")
     .attr("x", 120)
     .attr("y", 0)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 180)
-    .attr("y", 35)
+    .attr("y", 35
+      )
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Marketing");
 
-
-    svg.append("svg:rect")
+// Draw third rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#technology")
+    .append("svg:rect")
     .attr("x", 240)
     .attr("y", 0)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 300)
     .attr("y", 35)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Technology");
 
-    svg.append("svg:rect")
+// Draw forth rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#education")
+    .append("svg:rect")
     .attr("x", 360)
     .attr("y", 0)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 420)
     .attr("y", 35)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Education");
+</script>
 
+<script type="text/javascript">
+// Draw first rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#communication")
+    .append("svg:rect")
+      .attr("x", 180)
+      .attr("y", 90)
+      .attr("height", 90)
+      .attr("width", 120)
+      .attr("rx", 15)
+      .attr("ry", 15)
+      .style("fill", "steelblue");
 
-//////
-
-  var w = 500,
-      h = 90;
-
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-
-  svg.append("svg:rect")
-    .attr("x", 180)
-    .attr("y", 0)
-    .attr("height", 90)
-    .attr("width", 120)
-    .attr("rx", 15)
-    .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
-
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 35)
+    .attr("y", 125)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Communication");
 
-
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-
-  svg.append("svg:rect")
+// Draw second rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#information")
+    .append("svg:rect")
     .attr("x", 180)
-    .attr("y", 0)
+    .attr("y", 180)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 30)
+    .attr("y", 205)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Information");
 
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 45)
+    .attr("y", 220)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Management");
 
-
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-
-  svg.append("svg:rect")
+// Draw third rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#organization")
+    .append("svg:rect")
     .attr("x", 180)
-    .attr("y", 0)
+    .attr("y", 270)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 30)
+    .attr("y", 295)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Organization");
 
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 45)
+    .attr("y", 310)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Management");
 
-
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-
-  svg.append("svg:rect")
+// Draw forth rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#planning")
+    .append("svg:rect")
     .attr("x", 180)
-    .attr("y", 0)
+    .attr("y", 360)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
+
+// Add text to rectangle
+  var text = svg.append("svg:text")
+    .attr("x", 240)
+    .attr("y", 390)
+    .attr("dy", "1em")
+    .attr("text-anchor", "middle")
+    .style("font", "14px Helvetica Neue")
+    .style("fill", "white")
+    .text("Planning and");
 
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 30)
+    .attr("y", 405)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
-    .text("Design and");
+    .text("Design");
 
-  var text = svg.append("svg:text")
-    .attr("x", 240)
-    .attr("y", 45)
-    .attr("dy", "1em")
-    .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
-    .style("fill", "white")
-    .text("Planning");
-
-  var svg = d3.select(".tshaped")
-    .append("svg:svg")
-    .attr("width", w)
-    .attr("height", h);
-
-  svg.append("svg:rect")
+// Draw fifth rectangle with hyperlink
+  svg.append("svg:a")
+    .attr("xlink:href", "/#research")
+    .append("svg:rect")
     .attr("x", 180)
-    .attr("y", 0)
+    .attr("y", 450)
     .attr("height", 90)
     .attr("width", 120)
     .attr("rx", 15)
     .attr("ry", 15)
-    .style("fill", "steelblue")
-    .style("fill-opacity", ".5");
+    .style("fill", "steelblue");
 
+// Add text to rectangle
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 30)
+    .attr("y", 475)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Research and");
 
   var text = svg.append("svg:text")
     .attr("x", 240)
-    .attr("y", 45)
+    .attr("y", 485)
     .attr("dy", "1em")
     .attr("text-anchor", "middle")
-    .style("font", "16px Helvetica Neue")
+    .style("font", "14px Helvetica Neue")
     .style("fill", "white")
     .text("Investigation");
-
-  var bbox = text.node().getBBox();
 
 </script>

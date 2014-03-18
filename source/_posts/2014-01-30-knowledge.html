@@ -1,317 +1,919 @@
 ---
 layout: post
-title: Knowledge Stack
-subtitle:
-comments: true
-sharing: true
-footer: true
+title: Knowledge
 ---
+
 <style>
-/* Begin Bar Charts */
-.value {
-  fill: white;
-  }
+text {
+  font: 10px sans-serif;
+}
+
+rect.background {
+  fill: #F8F8F8;
+}
+
 .axis {
   shape-rendering: crispEdges;
-  font: 10px sans-serif;
-  }
-.axis text {
-  font: 10px sans-serif;
-  }
-.axis path {
-  stroke: none;
-  display: none;
-  }
-.x.axis line {
-  stroke: #fff;
-  stroke-opacity: .8;
-  }
-.y.axis path {
-  stroke: black;
-  }
+}
+
 .axis path,
 .axis line {
   fill: none;
   stroke: #000;
-  }
-.bar {
-  fill: steelblue;
-  }
-.bar:hover {
-  fill: brown;
-  }
-/*  End Bar Charts */
+}
 </style>
 
 <section>
-	<h2>Business Strategy and Tactics</h2>
+  <blockquote><p>&ldquo;The suppression of uncomfortable ideas may be common in religion and politics, but it is not the path to knowledge; it has no place in the endeavor of science.&rdquo;
+  <small class="pull-right">Cosmos: A Personal Voyage, Episode 4 "Heavan and Hell". Carl Sagan, 1980.</small></p></blockquote>
+</section>
+</br>
+<section>
+	<h3 id="business">Business Strategy and Tactics</h3>
 	<div class="knowl_bus"></div>
 
-	<h2>Product Marketing and Development</h2>
+	<h3 id="marketing">Product Development and Marketing</h3>
 	<div class="knowl_mar"></div>
 
-	<h2>Website Design and Development</h2>
+	<h3 id="technology">Website Architecture</h3>
 	<div class="knowl_tech"></div>
 
-	<h2>Learning and Development</h2>
+	<h3 id="education">Learning and Development</h3>
 	<div class="knowl_learn"></div>
 </section>
 
 <!-- Begin Business Strategy and Tactics Stack Bar Chart-->
-<script type="text/javascript">
+<script>
 (function() {
-
-var margin = {top: 20, right: 20, bottom: 40, left: 20},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 100, bottom: 10, left: 200},
+    width = 700 - margin.left - margin.right,
+    height = 180 - margin.top - margin.bottom;
 
 var x = d3.scale.linear()
-    .range([0, width])
+    .range([0, width]);
 
-var y = d3.scale.ordinal()
-    .rangeRoundBands([0, height], .1);
+var barHeight = 20;
+
+var color = d3.scale.ordinal()
+    .range(["steelblue"]);
+
+var duration = 750,
+    delay = 25;
+
+var partition = d3.layout.partition()
+    .value(function(d) { return d.size; });
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("top");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left");
-
-var bar1 = d3.select(".knowl_bus").append("svg")
+var svg = d3.select(".knowl_bus").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data/knowl_bus.tsv", type, function(error, data) {
-  x.domain([0, d3.max(data, function(d) { return d.frequency; })]);
-  y.domain(data.map(function(d) { return d.letter; }));
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", up);
 
-  bar1.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+svg.append("g")
+    .attr("class", "x axis");
 
-  bar1.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end");
+svg.append("g")
+    .attr("class", "y axis")
+  .append("line")
+    .attr("y1", "100%");
 
-  bar1.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("y", function(d) { return y(d.letter); })
-      .attr("height", y.rangeBand())
-      .attr("x", function(d) { return x(d.frequency); })
-      .attr("width", function(d) { return width - x(d.frequency); });
-
+d3.json("data/knowl_bus.json", function(error, root) {
+  partition.nodes(root);
+  x.domain([0, root.value]).nice();
+  down(root, 0);
 });
 
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
+function down(d, i) {
+  if (!d.children || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Entering nodes immediately obscure the clicked-on bar, so hide it.
+  exit.selectAll("rect").filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Enter the new bars for the clicked-on data.
+  // Per above, entering bars are immediately visible.
+  var enter = bar(d)
+      .attr("transform", stack(i))
+      .style("opacity", 1);
+
+  // Have the text fade-in, even though the bars are visible.
+  // Color the bars as parents; they will fade to children if appropriate.
+  enter.select("text").style("fill-opacity", 1e-6);
+  enter.select("rect").style("fill", color(true));
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to their new position.
+  var enterTransition = enter.transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; });
+
+  // Transition entering text.
+  enterTransition.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", function(d) { return color(!!d.children); });
+
+  // Transition exiting bars to fade out.
+  var exitTransition = exit.transition()
+      .duration(duration)
+      .style("opacity", 1e-6)
+      .remove();
+
+  // Transition exiting bars to the new x-scale.
+  exitTransition.selectAll("rect")
+      .attr("width", function(d) { return x(d.value); });
+
+  // Rebind the current node to the background.
+  svg.select(".background")
+      .datum(d)
+    .transition()
+      .duration(end);
+
+  d.index = i;
 }
 
+function up(d) {
+  if (!d.parent || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Enter the new bars for the clicked-on data's parent.
+  var enter = bar(d.parent)
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; })
+      .style("opacity", 1e-6);
+
+  // Color the bars as appropriate.
+  // Exiting nodes will obscure the parent bar, so hide it.
+  enter.select("rect")
+      .style("fill", function(d) { return color(!!d.children); })
+    .filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to fade in over the full duration.
+  var enterTransition = enter.transition()
+      .duration(end)
+      .style("opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  // When the entering parent rect is done, make it visible!
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
+
+  // Transition exiting bars to the parent's position.
+  var exitTransition = exit.selectAll("g").transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", stack(d.index));
+
+  // Transition exiting text to fade out.
+  exitTransition.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Transition exiting rects to the new scale and fade to parent color.
+  exitTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", color(true));
+
+  // Remove exiting nodes when the last child has finished transitioning.
+  exit.transition()
+      .duration(end)
+      .remove();
+
+  // Rebind the current parent to the background.
+  svg.select(".background")
+      .datum(d.parent)
+    .transition()
+      .duration(end);
+}
+
+// Creates a set of bars for the given data node, at the specified index.
+function bar(d) {
+  var bar = svg.insert("g", ".y.axis")
+      .attr("class", "enter")
+      .attr("transform", "translate(0,5)")
+    .selectAll("g")
+      .data(d.children)
+    .enter().append("g")
+      .style("cursor", function(d) { return !d.children ? null : "pointer"; })
+      .on("click", down);
+
+  bar.append("text")
+      .attr("x", -6)
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d.name; });
+
+  bar.append("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .attr("height", barHeight);
+
+  return bar;
+}
+
+// A stateful closure for stacking bars horizontally.
+function stack(i) {
+  var x0 = 0;
+  return function(d) {
+    var tx = "translate(" + x0 + "," + barHeight * i * 1.2 + ")";
+    x0 += x(d.value);
+    return tx;
+  };
+}
 })();
 </script>
 
-
-
-
-
+<!-- Begin Product Development and Marketing Stack Bar Chart-->
 <script>
 (function() {
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 100, bottom: 10, left: 200},
+    width = 700 - margin.left - margin.right,
+    height = 130 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+var x = d3.scale.linear()
+    .range([0, width]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+var barHeight = 20;
+
+var color = d3.scale.ordinal()
+    .range(["steelblue"]);
+
+var duration = 750,
+    delay = 25;
+
+var partition = d3.layout.partition()
+    .value(function(d) { return d.size; });
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("top")
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
-
-var bar2 = d3.select(".knowl_mar").append("svg")
+var svg = d3.select(".knowl_mar").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data/knowl_mar.tsv", type, function(error, data) {
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", up);
 
-  bar2.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+svg.append("g")
+    .attr("class", "x axis");
 
-  bar2.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end");
+svg.append("g")
+    .attr("class", "y axis")
+  .append("line")
+    .attr("y1", "100%");
 
-  bar2.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); });
-
+d3.json("data/knowl_mar.json", function(error, root) {
+  partition.nodes(root);
+  x.domain([0, root.value]).nice();
+  down(root, 0);
 });
 
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
+function down(d, i) {
+  if (!d.children || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Entering nodes immediately obscure the clicked-on bar, so hide it.
+  exit.selectAll("rect").filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Enter the new bars for the clicked-on data.
+  // Per above, entering bars are immediately visible.
+  var enter = bar(d)
+      .attr("transform", stack(i))
+      .style("opacity", 1);
+
+  // Have the text fade-in, even though the bars are visible.
+  // Color the bars as parents; they will fade to children if appropriate.
+  enter.select("text").style("fill-opacity", 1e-6);
+  enter.select("rect").style("fill", color(true));
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to their new position.
+  var enterTransition = enter.transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; });
+
+  // Transition entering text.
+  enterTransition.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", function(d) { return color(!!d.children); });
+
+  // Transition exiting bars to fade out.
+  var exitTransition = exit.transition()
+      .duration(duration)
+      .style("opacity", 1e-6)
+      .remove();
+
+  // Transition exiting bars to the new x-scale.
+  exitTransition.selectAll("rect")
+      .attr("width", function(d) { return x(d.value); });
+
+  // Rebind the current node to the background.
+  svg.select(".background")
+      .datum(d)
+    .transition()
+      .duration(end);
+
+  d.index = i;
+}
+
+function up(d) {
+  if (!d.parent || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Enter the new bars for the clicked-on data's parent.
+  var enter = bar(d.parent)
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; })
+      .style("opacity", 1e-6);
+
+  // Color the bars as appropriate.
+  // Exiting nodes will obscure the parent bar, so hide it.
+  enter.select("rect")
+      .style("fill", function(d) { return color(!!d.children); })
+    .filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to fade in over the full duration.
+  var enterTransition = enter.transition()
+      .duration(end)
+      .style("opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  // When the entering parent rect is done, make it visible!
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
+
+  // Transition exiting bars to the parent's position.
+  var exitTransition = exit.selectAll("g").transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", stack(d.index));
+
+  // Transition exiting text to fade out.
+  exitTransition.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Transition exiting rects to the new scale and fade to parent color.
+  exitTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", color(true));
+
+  // Remove exiting nodes when the last child has finished transitioning.
+  exit.transition()
+      .duration(end)
+      .remove();
+
+  // Rebind the current parent to the background.
+  svg.select(".background")
+      .datum(d.parent)
+    .transition()
+      .duration(end);
+}
+
+// Creates a set of bars for the given data node, at the specified index.
+function bar(d) {
+  var bar = svg.insert("g", ".y.axis")
+      .attr("class", "enter")
+      .attr("transform", "translate(0,5)")
+    .selectAll("g")
+      .data(d.children)
+    .enter().append("g")
+      .style("cursor", function(d) { return !d.children ? null : "pointer"; })
+      .on("click", down);
+
+  bar.append("text")
+      .attr("x", -6)
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d.name; });
+
+  bar.append("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .attr("height", barHeight);
+
+  return bar;
+}
+
+// A stateful closure for stacking bars horizontally.
+function stack(i) {
+  var x0 = 0;
+  return function(d) {
+    var tx = "translate(" + x0 + "," + barHeight * i * 1.2 + ")";
+    x0 += x(d.value);
+    return tx;
+  };
 }
 })();
 </script>
 
+<!-- Begin Website Architecture Stack Bar Chart-->
 <script>
 (function() {
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 100, bottom: 10, left: 200},
+    width = 700 - margin.left - margin.right,
+    height = 175 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+var x = d3.scale.linear()
+    .range([0, width]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+var barHeight = 20;
+
+var color = d3.scale.ordinal()
+    .range(["steelblue"]);
+
+var duration = 750,
+    delay = 25;
+
+var partition = d3.layout.partition()
+    .value(function(d) { return d.size; });
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("top");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
-
-var bar3 = d3.select(".knowl_tech").append("svg")
+var svg = d3.select(".knowl_tech").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data/knowl_tech.tsv", type, function(error, data) {
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", up);
 
-  bar3.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+svg.append("g")
+    .attr("class", "x axis");
 
-  bar3.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end");
+svg.append("g")
+    .attr("class", "y axis")
+  .append("line")
+    .attr("y1", "100%");
 
-  bar3.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); });
-
+d3.json("data/knowl_tech.json", function(error, root) {
+  partition.nodes(root);
+  x.domain([0, root.value]).nice();
+  down(root, 0);
 });
 
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
+function down(d, i) {
+  if (!d.children || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Entering nodes immediately obscure the clicked-on bar, so hide it.
+  exit.selectAll("rect").filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Enter the new bars for the clicked-on data.
+  // Per above, entering bars are immediately visible.
+  var enter = bar(d)
+      .attr("transform", stack(i))
+      .style("opacity", 1);
+
+  // Have the text fade-in, even though the bars are visible.
+  // Color the bars as parents; they will fade to children if appropriate.
+  enter.select("text").style("fill-opacity", 1e-6);
+  enter.select("rect").style("fill", color(true));
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to their new position.
+  var enterTransition = enter.transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; });
+
+  // Transition entering text.
+  enterTransition.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", function(d) { return color(!!d.children); });
+
+  // Transition exiting bars to fade out.
+  var exitTransition = exit.transition()
+      .duration(duration)
+      .style("opacity", 1e-6)
+      .remove();
+
+  // Transition exiting bars to the new x-scale.
+  exitTransition.selectAll("rect")
+      .attr("width", function(d) { return x(d.value); });
+
+  // Rebind the current node to the background.
+  svg.select(".background")
+      .datum(d)
+    .transition()
+      .duration(end);
+
+  d.index = i;
+}
+
+function up(d) {
+  if (!d.parent || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Enter the new bars for the clicked-on data's parent.
+  var enter = bar(d.parent)
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; })
+      .style("opacity", 1e-6);
+
+  // Color the bars as appropriate.
+  // Exiting nodes will obscure the parent bar, so hide it.
+  enter.select("rect")
+      .style("fill", function(d) { return color(!!d.children); })
+    .filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to fade in over the full duration.
+  var enterTransition = enter.transition()
+      .duration(end)
+      .style("opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  // When the entering parent rect is done, make it visible!
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
+
+  // Transition exiting bars to the parent's position.
+  var exitTransition = exit.selectAll("g").transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", stack(d.index));
+
+  // Transition exiting text to fade out.
+  exitTransition.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Transition exiting rects to the new scale and fade to parent color.
+  exitTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", color(true));
+
+  // Remove exiting nodes when the last child has finished transitioning.
+  exit.transition()
+      .duration(end)
+      .remove();
+
+  // Rebind the current parent to the background.
+  svg.select(".background")
+      .datum(d.parent)
+    .transition()
+      .duration(end);
+}
+
+// Creates a set of bars for the given data node, at the specified index.
+function bar(d) {
+  var bar = svg.insert("g", ".y.axis")
+      .attr("class", "enter")
+      .attr("transform", "translate(0,5)")
+    .selectAll("g")
+      .data(d.children)
+    .enter().append("g")
+      .style("cursor", function(d) { return !d.children ? null : "pointer"; })
+      .on("click", down);
+
+  bar.append("text")
+      .attr("x", -6)
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d.name; });
+
+  bar.append("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .attr("height", barHeight);
+
+  return bar;
+}
+
+// A stateful closure for stacking bars horizontally.
+function stack(i) {
+  var x0 = 0;
+  return function(d) {
+    var tx = "translate(" + x0 + "," + barHeight * i * 1.2 + ")";
+    x0 += x(d.value);
+    return tx;
+  };
 }
 })();
 </script>
 
-
+<!-- Begin Learning and Development Stack Bar Chart-->
 <script>
 (function() {
-var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 600 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+var margin = {top: 20, right: 100, bottom: 10, left: 200},
+    width = 700 - margin.left - margin.right,
+    height = 180 - margin.top - margin.bottom;
 
-var x = d3.scale.ordinal()
-    .rangeRoundBands([0, width], .1);
+var x = d3.scale.linear()
+    .range([0, width]);
 
-var y = d3.scale.linear()
-    .range([height, 0]);
+var barHeight = 20;
+
+var color = d3.scale.ordinal()
+    .range(["steelblue"]);
+
+var duration = 750,
+    delay = 25;
+
+var partition = d3.layout.partition()
+    .value(function(d) { return d.size; });
 
 var xAxis = d3.svg.axis()
     .scale(x)
-    .orient("bottom");
+    .orient("top");
 
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .orient("left")
-    .ticks(10);
-
-var bar4 = d3.select(".knowl_learn").append("svg")
+var svg = d3.select(".knowl_learn").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("data/knowl_learn.tsv", type, function(error, data) {
-  x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+svg.append("rect")
+    .attr("class", "background")
+    .attr("width", width)
+    .attr("height", height)
+    .on("click", up);
 
-  bar4.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0," + height + ")")
-      .call(xAxis);
+svg.append("g")
+    .attr("class", "x axis");
 
-  bar4.append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-    .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", ".71em")
-      .style("text-anchor", "end");
+svg.append("g")
+    .attr("class", "y axis")
+  .append("line")
+    .attr("y1", "100%");
 
-  bar4.selectAll(".bar")
-      .data(data)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", function(d) { return x(d.letter); })
-      .attr("width", x.rangeBand())
-      .attr("y", function(d) { return y(d.frequency); })
-      .attr("height", function(d) { return height - y(d.frequency); });
-
+d3.json("data/knowl_learn.json", function(error, root) {
+  partition.nodes(root);
+  x.domain([0, root.value]).nice();
+  down(root, 0);
 });
 
-function type(d) {
-  d.frequency = +d.frequency;
-  return d;
+function down(d, i) {
+  if (!d.children || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Entering nodes immediately obscure the clicked-on bar, so hide it.
+  exit.selectAll("rect").filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Enter the new bars for the clicked-on data.
+  // Per above, entering bars are immediately visible.
+  var enter = bar(d)
+      .attr("transform", stack(i))
+      .style("opacity", 1);
+
+  // Have the text fade-in, even though the bars are visible.
+  // Color the bars as parents; they will fade to children if appropriate.
+  enter.select("text").style("fill-opacity", 1e-6);
+  enter.select("rect").style("fill", color(true));
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to their new position.
+  var enterTransition = enter.transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; });
+
+  // Transition entering text.
+  enterTransition.select("text")
+      .style("fill-opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", function(d) { return color(!!d.children); });
+
+  // Transition exiting bars to fade out.
+  var exitTransition = exit.transition()
+      .duration(duration)
+      .style("opacity", 1e-6)
+      .remove();
+
+  // Transition exiting bars to the new x-scale.
+  exitTransition.selectAll("rect")
+      .attr("width", function(d) { return x(d.value); });
+
+  // Rebind the current node to the background.
+  svg.select(".background")
+      .datum(d)
+    .transition()
+      .duration(end);
+
+  d.index = i;
+}
+
+function up(d) {
+  if (!d.parent || this.__transition__) return;
+  var end = duration + d.children.length * delay;
+
+  // Mark any currently-displayed bars as exiting.
+  var exit = svg.selectAll(".enter")
+      .attr("class", "exit");
+
+  // Enter the new bars for the clicked-on data's parent.
+  var enter = bar(d.parent)
+      .attr("transform", function(d, i) { return "translate(0," + barHeight * i * 1.2 + ")"; })
+      .style("opacity", 1e-6);
+
+  // Color the bars as appropriate.
+  // Exiting nodes will obscure the parent bar, so hide it.
+  enter.select("rect")
+      .style("fill", function(d) { return color(!!d.children); })
+    .filter(function(p) { return p === d; })
+      .style("fill-opacity", 1e-6);
+
+  // Update the x-scale domain.
+  x.domain([0, d3.max(d.parent.children, function(d) { return d.value; })]).nice();
+
+  // Update the x-axis.
+  svg.selectAll(".x.axis").transition()
+      .duration(duration)
+      .call(xAxis);
+
+  // Transition entering bars to fade in over the full duration.
+  var enterTransition = enter.transition()
+      .duration(end)
+      .style("opacity", 1);
+
+  // Transition entering rects to the new x-scale.
+  // When the entering parent rect is done, make it visible!
+  enterTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .each("end", function(p) { if (p === d) d3.select(this).style("fill-opacity", null); });
+
+  // Transition exiting bars to the parent's position.
+  var exitTransition = exit.selectAll("g").transition()
+      .duration(duration)
+      .delay(function(d, i) { return i * delay; })
+      .attr("transform", stack(d.index));
+
+  // Transition exiting text to fade out.
+  exitTransition.select("text")
+      .style("fill-opacity", 1e-6);
+
+  // Transition exiting rects to the new scale and fade to parent color.
+  exitTransition.select("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .style("fill", color(true));
+
+  // Remove exiting nodes when the last child has finished transitioning.
+  exit.transition()
+      .duration(end)
+      .remove();
+
+  // Rebind the current parent to the background.
+  svg.select(".background")
+      .datum(d.parent)
+    .transition()
+      .duration(end);
+}
+
+// Creates a set of bars for the given data node, at the specified index.
+function bar(d) {
+  var bar = svg.insert("g", ".y.axis")
+      .attr("class", "enter")
+      .attr("transform", "translate(0,5)")
+    .selectAll("g")
+      .data(d.children)
+    .enter().append("g")
+      .style("cursor", function(d) { return !d.children ? null : "pointer"; })
+      .on("click", down);
+
+  bar.append("text")
+      .attr("x", -6)
+      .attr("y", barHeight / 2)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d.name; });
+
+  bar.append("rect")
+      .attr("width", function(d) { return x(d.value); })
+      .attr("height", barHeight);
+
+  return bar;
+}
+
+// A stateful closure for stacking bars horizontally.
+function stack(i) {
+  var x0 = 0;
+  return function(d) {
+    var tx = "translate(" + x0 + "," + barHeight * i * 1.2 + ")";
+    x0 += x(d.value);
+    return tx;
+  };
 }
 })();
 </script>

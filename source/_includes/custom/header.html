@@ -1,19 +1,25 @@
-<style>
-.pic {
-	float: left;
-}
-.hgroup {
-	float: right;
-}
-</style>
-
-<div class="pic">
-	<img class="position" alt="Mark Schipper" width="210px" height="280px" src="/images/mark.jpg" />
+</br>
+<div class="container banner">
+	<div class="row">
+	  <div class="col-md-3 pic">
+	  	<img class="thumbnail img-rounded img-responsive" alt="Mark Schipper" width="210px" height="280px" src="/images/mark.jpg" />
+	  </div>
+	  <div class="col-md-6 hgroup">
+	  	<hgroup>
+				<h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
+				{% if site.subtitle %}
+				<h2>{{ site.subtitle }}</h2>
+				{% endif %}
+			</hgroup>
+			</br>
+			<div>
+				<a href="http://ca.linkedin.com/in/schipperius" target="_blank">
+        	<img src="https://static.licdn.com/scds/common/u/img/webpromo/btn_viewmy_160x33.png" width="160" height="33" border="0" alt="View Mark Schipper's profile on LinkedIn">
+    		</a>
+    	</div>
+	  </div>
+	  <div id="chart">
+	  </div>
+		<button class="regenerate pull-right">Regenerate</button>
+	</div>
 </div>
-
-<hgroup class="hgroup">
-	<h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
-	{% if site.subtitle %}
-	<h2>{{ site.subtitle }}</h2>
-	{% endif %}
-</hgroup>
